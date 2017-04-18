@@ -25,21 +25,16 @@ class Market
     while n < 3
       puts "Enter number of participants (must be at leats 3 to be interesting):"
       n = gets.chomp.to_i
-      puts
       puts "Which part of MUST BE 3 did you not understand?" if n < 3
-      puts
     end
     self.number = n
   end
 
   def get_names
     puts "OK, now lets enter out names"
-    puts
-    sleep(0.5)
     self.number.times do |n|
       puts "Participant #{n + 1} enter your name:"
       name = gets.chomp
-      puts
       self.participants << Participant.new(name)
     end
   end
@@ -51,10 +46,8 @@ class Market
   def get_bid(participant)
     puts "#{participant.name} please enter your bid (include decimal):"
     bid = gets.chomp.to_f
-    puts
     confirm_bid(participant.name, bid)
-    puts "Thank you #{participant.name}, now AVERT your eyes! This is a blind auction."
-    puts
+    puts "Thank you #{participant.name}, now AVERT your eyes!"
     participant.bid = bid
   end
 

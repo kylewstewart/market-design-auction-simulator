@@ -3,7 +3,6 @@ require_relative '../lib/market.rb'
 require_relative '../lib/participant.rb'
 require_relative '../lib/second-price-auction.rb'
 
-
 def welcome
   puts "Shall we play a game? (y/n)"
   play_game = gets.chomp.to_s.downcase
@@ -60,6 +59,7 @@ auction_types = ["Sealed Bid First Price", "Sealed Bid Second Price (Vickrey)"]
 welcome
 define_market
 
+again = 'y'
 while again == 'y'
   type = auction_type(auction_types)
   auction = set_auction(type)
