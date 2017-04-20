@@ -2,6 +2,8 @@ require 'pry'
 require_relative '../lib/market.rb'
 require_relative '../lib/participant.rb'
 require_relative '../lib/second-price-auction.rb'
+require_relative '../lib/first-price-auction.rb'
+
 
 def welcome
   puts "Shall we play a game? (y/n)"
@@ -28,7 +30,7 @@ def define_market
 end
 
 def auction_type(auction_types)
-  puts "Great, now choose what type of auction you want to run"
+  puts "Please choose the type of auction you want to simulate"
   puts "Available Auction Types:"
   auction_types.each_with_index { |auction_type, index| puts "#{index + 1} - #{auction_type}"}
 
@@ -54,21 +56,24 @@ def set_auction(type)
 end
 
 
-auction_types = ["Sealed Bid First Price", "Sealed Bid Second Price (Vickrey)"]
+auction_types = ["Sealed-Bid First-Price", "Sealed-Bid Second-Price (Vickrey)"]
 
 welcome
+type = auction_type(auction_types)
 define_market
 
 again = 'y'
 while again == 'y'
-  type = auction_type(auction_types)
   auction = set_auction(type)
 
   puts "The final price of the auction is #{auction.winning_price}."
   puts "#{auction.auction_winner} your are the winner!!!"
 
-  puts "Would you like to run a different auction? (y/n)"
+  puts "Would you like to run a different auction with same market? (y/n)"
   again = gets.chomp.to_s
+
+  type = auction_type(auction_types) if again == "y"
+
 end
 
-puts "Bye ..."
+puts "GoodBye ..."
