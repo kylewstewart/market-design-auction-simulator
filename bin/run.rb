@@ -70,7 +70,7 @@ while again == 'y'
   puts
   puts "The final price of the auction is #{auction.winning_price}."
   puts
-  puts "#{auction.auction_winner} your are the winner!!!"
+  puts "#{auction.auction_winner} wins the auction."
   puts
   puts "Would you like to run a different auction with same market? (y/n)"
   again = gets.chomp.to_s

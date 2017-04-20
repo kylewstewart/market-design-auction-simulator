@@ -24,7 +24,6 @@ class Market
     Participant.all.each {|participant| get_bid(participant)}
   end
 
-
   def get_number
     n = 0
     while n < 3
@@ -46,23 +45,16 @@ class Market
     end
   end
 
-
-
   def get_bid(participant)
     puts
-    puts "Please enter the bid for #{participant.name} (include decimal):"
-    bid = gets.chomp.to_f
-    confirm_bid(participant, bid)
-    participant.bid = bid
-  end
-
-  def confirm_bid(participant, bid)
     confirm = "n"
     while confirm != "y"
-      puts "#{participant.name}, please confirm your bid is #{bid} (y/n):"
-      confirm = gets.chomp
-      get_bid(participant) if confirm = "n"
+      puts "Please enter the bid for #{participant.name} (include decimal):"
+      bid = gets.chomp.to_f
+      puts "Please confirm the bid for #{participant.name} is #{bid} (y/n):"
+      confirm = gets.chomp.downcase
     end
+    participant.bid = bid
   end
 
 end
