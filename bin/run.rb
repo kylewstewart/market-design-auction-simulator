@@ -23,6 +23,7 @@ def welcome
 end
 
 def define_market
+  puts
   puts "First, we need to define the market."
   market = Market.new
   market.get_participants
@@ -31,9 +32,10 @@ end
 
 def auction_type(auction_types)
   puts "Please choose the type of auction you want to simulate"
+  puts
   puts "Available Auction Types:"
   auction_types.each_with_index { |auction_type, index| puts "#{index + 1} - #{auction_type}"}
-
+  puts
   puts "Please select an Auction Type (by number):"
   type = gets.chomp.to_i
 
@@ -65,15 +67,15 @@ define_market
 again = 'y'
 while again == 'y'
   auction = set_auction(type)
-
+  puts
   puts "The final price of the auction is #{auction.winning_price}."
+  puts
   puts "#{auction.auction_winner} your are the winner!!!"
-
+  puts
   puts "Would you like to run a different auction with same market? (y/n)"
   again = gets.chomp.to_s
-
   type = auction_type(auction_types) if again == "y"
-
 end
 
+puts
 puts "GoodBye ..."

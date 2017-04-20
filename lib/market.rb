@@ -20,6 +20,11 @@ class Market
     get_names
   end
 
+  def get_preferences
+    Participant.all.each {|participant| get_bid(participant)}
+  end
+
+
   def get_number
     n = 0
     while n < 3
@@ -31,31 +36,32 @@ class Market
   end
 
   def get_names
+    puts
     puts "OK, now lets enter out names"
     self.number.times do |n|
-      puts "Participant #{n + 1} enter your name:"
+      puts
+      puts "Enter the name of Participant #{n + 1}:"
       name = gets.chomp
       self.participants << Participant.new(name)
     end
   end
 
-  def get_preferences
-    Participant.all.each {|participant| get_bid(participant)}
-  end
+
 
   def get_bid(participant)
-    puts "#{participant.name} please enter your bid (include decimal):"
+    puts
+    puts "Please enter the bid for #{participant.name} (include decimal):"
     bid = gets.chomp.to_f
-    confirm_bid(participant.name, bid)
-    puts "Thank you #{participant.name}, now AVERT your eyes!"
+    confirm_bid(participant, bid)
     participant.bid = bid
   end
 
-  def confirm_bid(name, bid)
+  def confirm_bid(participant, bid)
     confirm = "n"
     while confirm != "y"
-      puts "#{name}, please confirm your bid is #{bid} (y/n):"
+      puts "#{participant.name}, please confirm your bid is #{bid} (y/n):"
       confirm = gets.chomp
+      get_bid(participant) if confirm = "n"
     end
   end
 
